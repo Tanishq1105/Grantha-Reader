@@ -1,0 +1,214 @@
+{
+  "release": "3.4.0",
+  "chunks": 73819,
+  "books": 17,
+  "pages": 23348,
+  "checks": [
+    {
+      "question": "What does the Gita say about duty?",
+      "books": [
+        "gitascan",
+        "gitaasitis"
+      ],
+      "source_ids": [
+        "gitaasitis:986",
+        "gitaasitis:142",
+        "gitascan:12",
+        "gitascan:91"
+      ],
+      "seconds": 0.985,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "How can I keep working without worrying about outcomes?",
+      "books": [
+        "gitaasitis",
+        "gitascan"
+      ],
+      "source_ids": [
+        "gitaasitis:370",
+        "gitaasitis:164",
+        "gitaasitis:167",
+        "gitaasitis:154"
+      ],
+      "seconds": 0.023,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "कर्मफल की आसक्ति कैसे छोड़ें?",
+      "books": [
+        "gitaasitis",
+        "gitascan"
+      ],
+      "source_ids": [
+        "gitaasitis:297",
+        "gitascan:138",
+        "gitascan:65",
+        "gitascan:91"
+      ],
+      "seconds": 0.027,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "मोक्ष क्या है?",
+      "books": [
+        "gitaasitis",
+        "gitascan"
+      ],
+      "source_ids": [
+        "gitascan:399",
+        "gitascan:382",
+        "gitaasitis:460",
+        "gitascan:148"
+      ],
+      "seconds": 0.04,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "गीतायां कर्तव्यविषये किम् उक्तम्?",
+      "books": [
+        "gitascan",
+        "gitaasitis"
+      ],
+      "source_ids": [
+        "gitascan:100",
+        "gitascan:407",
+        "gitascan:420",
+        "gitaasitis:229"
+      ],
+      "seconds": 0.02,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "Why was Rama sent into exile?",
+      "books": [
+        "ramayana"
+      ],
+      "source_ids": [
+        "ramayana:469",
+        "ramayana:319",
+        "ramayana:340",
+        "ramayana:316"
+      ],
+      "seconds": 0.038,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "राम को वनवास क्यों मिला?",
+      "books": [
+        "ramayana"
+      ],
+      "source_ids": [
+        "ramayana:337",
+        "ramayana:319",
+        "ramayana:336",
+        "ramayana:333"
+      ],
+      "seconds": 0.058,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "रामः वनं किमर्थं गतः?",
+      "books": [
+        "ramayana"
+      ],
+      "source_ids": [
+        "ramayana:336",
+        "ramayana:340",
+        "ramayana:462",
+        "ramayana:436"
+      ],
+      "seconds": 0.08,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "What do the Upanishads teach about the self?",
+      "books": [
+        "upanishads1",
+        "upanishads2"
+      ],
+      "source_ids": [
+        "upanishads1:38",
+        "upanishads2:363",
+        "upanishads2:39",
+        "upanishads1:429"
+      ],
+      "seconds": 0.015,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "उपनिषदों में आत्मा क्या है?",
+      "books": [
+        "upanishads1",
+        "upanishads2"
+      ],
+      "source_ids": [
+        "upanishads1:39",
+        "upanishads1:38",
+        "upanishads1:36",
+        "upanishads2:363"
+      ],
+      "seconds": 0.032,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "What does the Rigveda say about Agni?",
+      "books": [
+        "rigveda1",
+        "rigveda2"
+      ],
+      "source_ids": [
+        "rigveda1:20",
+        "rigveda1:354",
+        "rigveda2:198",
+        "rigveda1:574"
+      ],
+      "seconds": 0.021,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "ऋग्वेद में अग्नि क्या है?",
+      "books": [
+        "rigveda1",
+        "rigveda2"
+      ],
+      "source_ids": [
+        "rigveda1:496",
+        "rigveda2:531",
+        "rigveda2:10",
+        "rigveda1:574"
+      ],
+      "seconds": 0.02,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "What is the current Bitcoin price?",
+      "books": null,
+      "source_ids": [],
+      "seconds": 0.001,
+      "method": "local_hybrid",
+      "passed": true
+    },
+    {
+      "question": "Who invented the smartphone?",
+      "books": null,
+      "source_ids": [],
+      "seconds": 0.0,
+      "method": "local_hybrid",
+      "passed": true
+    }
+  ],
+  "limits": "Scope and exact-source-excerpt smoke checks with qualitative review; not an exhaustive relevance evaluation or a live Gemini test. Timings are observations on this host, not a latency guarantee."
+}

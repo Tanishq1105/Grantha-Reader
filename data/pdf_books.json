@@ -1,0 +1,1065 @@
+{
+  "schema_version": 2,
+  "books": [
+    {
+      "id": "gitascan",
+      "title": "Śrīmad Bhagavad Gītā",
+      "title_sa": "श्रीमद्भगवद्गीता",
+      "edition": "Sanskrit, Hindi & English · edited by Ashok Kaushik",
+      "work": "gita",
+      "languages": [
+        "sa",
+        "hi",
+        "en"
+      ],
+      "extraction": "ocr",
+      "filename": "Bhagavad Gita.pdf",
+      "stored_filename": "gitascan.pdf",
+      "pdf_sha256": "92e072d96cdc0c1329010935a8be4ac18a0f75b2803f8664370684ace5af3e1b",
+      "page_count": 428,
+      "start_page": 13,
+      "source_type": "uploaded_pdf",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Chapter 1 · अध्याय १",
+          "page": 13,
+          "chapter": 1
+        },
+        {
+          "level": 1,
+          "title": "Chapter 2 · अध्याय २",
+          "page": 38,
+          "chapter": 2
+        },
+        {
+          "level": 1,
+          "title": "Chapter 3 · अध्याय ३",
+          "page": 80,
+          "chapter": 3
+        },
+        {
+          "level": 1,
+          "title": "Chapter 4 · अध्याय ४",
+          "page": 105,
+          "chapter": 4
+        },
+        {
+          "level": 1,
+          "title": "Chapter 5 · अध्याय ५",
+          "page": 132,
+          "chapter": 5
+        },
+        {
+          "level": 1,
+          "title": "Chapter 6 · अध्याय ६",
+          "page": 150,
+          "chapter": 6
+        },
+        {
+          "level": 1,
+          "title": "Chapter 7 · अध्याय ७",
+          "page": 178,
+          "chapter": 7
+        },
+        {
+          "level": 1,
+          "title": "Chapter 8 · अध्याय ८",
+          "page": 196,
+          "chapter": 8
+        },
+        {
+          "level": 1,
+          "title": "Chapter 9 · अध्याय ९",
+          "page": 214,
+          "chapter": 9
+        },
+        {
+          "level": 1,
+          "title": "Chapter 10 · अध्याय १०",
+          "page": 235,
+          "chapter": 10
+        },
+        {
+          "level": 1,
+          "title": "Chapter 11 · अध्याय ११",
+          "page": 257,
+          "chapter": 11
+        },
+        {
+          "level": 1,
+          "title": "Chapter 12 · अध्याय १२",
+          "page": 289,
+          "chapter": 12
+        },
+        {
+          "level": 1,
+          "title": "Chapter 13 · अध्याय १३",
+          "page": 301,
+          "chapter": 13
+        },
+        {
+          "level": 1,
+          "title": "Chapter 14 · अध्याय १४",
+          "page": 321,
+          "chapter": 14
+        },
+        {
+          "level": 1,
+          "title": "Chapter 15 · अध्याय १५",
+          "page": 337,
+          "chapter": 15
+        },
+        {
+          "level": 1,
+          "title": "Chapter 16 · अध्याय १६",
+          "page": 351,
+          "chapter": 16
+        },
+        {
+          "level": 1,
+          "title": "Chapter 17 · अध्याय १७",
+          "page": 366,
+          "chapter": 17
+        },
+        {
+          "level": 1,
+          "title": "Chapter 18 · अध्याय १८",
+          "page": 382,
+          "chapter": 18
+        }
+      ],
+      "outline_note": "Chapter start pages visually checked against all 18 printed chapter headings. Individual OCR verse numbers are not certified.",
+      "category": "gita",
+      "origin": "user_upload",
+      "file_size": 53829203,
+      "sort_order": 0
+    },
+    {
+      "id": "gitaasitis",
+      "title": "Bhagavad-gītā As It Is",
+      "title_sa": "भगवद्गीता यथारूप",
+      "edition": "A. C. Bhaktivedanta Swami Prabhupāda · BBT",
+      "work": "gita",
+      "languages": [
+        "sa",
+        "en"
+      ],
+      "extraction": "native",
+      "filename": "bhagavad-gita-as-it-is.pdf",
+      "stored_filename": "gitaasitis.pdf",
+      "pdf_sha256": "5f44f18a2408ca4dce5d7a7f134a6ba560afc2a4417113dfb849e514293cff3e",
+      "page_count": 1029,
+      "start_page": 42,
+      "source_type": "uploaded_pdf",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "reference_end_pages": {
+        "18.78": 1028
+      },
+      "non_body_ranges": [
+        {
+          "start": 1029,
+          "end": 1029,
+          "label": "Publisher download information"
+        }
+      ],
+      "boundary_note": "The last verse and purport end on PDF page 1028. Page 1029 contains download information and is not part of verse 18.78.",
+      "category": "gita",
+      "origin": "user_upload",
+      "file_size": 3891095,
+      "sort_order": 1
+    },
+    {
+      "id": "ramayana",
+      "title": "Śrīmad Vālmīki Rāmāyaṇa",
+      "title_sa": "श्रीमद्वाल्मीकीय रामायण",
+      "edition": "Gita Press · Sanskrit text & English translation",
+      "work": "ramayana",
+      "languages": [
+        "sa",
+        "en"
+      ],
+      "extraction": "native",
+      "filename": "Valmiki_Ramayana_Gita_Press.pdf",
+      "stored_filename": "ramayana.pdf",
+      "pdf_sha256": "cc2d7668b77dd36830cb2ba8e7b90d9e94b4e6d6b38bd1a34f19bc5ec74a7804",
+      "page_count": 2303,
+      "start_page": 59,
+      "source_type": "uploaded_pdf",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "heading_overrides": {
+        "1154": {
+          "printed": "XLIII",
+          "reference": "4.63",
+          "note": "The printed English heading says Canto XLIII; the Sanskrit heading and ending colophon identify Canto 63. The original page is unchanged."
+        },
+        "2168": {
+          "printed": "LVI",
+          "reference": "7.46",
+          "note": "The printed English heading says Canto LVI; the Sanskrit heading and ending colophon identify Canto 46. The original page is unchanged."
+        }
+      },
+      "reference_end_pages": {
+        "4.67": 1168
+      },
+      "non_body_ranges": [
+        {
+          "start": 1169,
+          "end": 1191,
+          "label": "Volume II front matter"
+        }
+      ],
+      "boundary_note": "Kishkindhakanda canto 67 ends with its colophon on PDF page 1168. Pages 1169–1191 are Volume II title/contents pages and are not part of that canto.",
+      "category": "ramayana",
+      "origin": "user_upload",
+      "file_size": 9486455,
+      "sort_order": 2
+    },
+    {
+      "id": "mahabharata1",
+      "title": "Mahābhārata · Volume 1",
+      "title_sa": "महाभारत · खण्ड 1",
+      "edition": "Gita Press · Sanskrit & Hindi · Ādi & Sabhā",
+      "work": "mahabharata",
+      "category": "mahabharata",
+      "collection_label": "MAHĀBHĀRATA",
+      "volume": 1,
+      "languages": [
+        "sa",
+        "hi"
+      ],
+      "extraction": "glyph_decoded",
+      "filename": "Mahabharata Volume 1.pdf",
+      "stored_filename": "mahabharata1.pdf",
+      "start_page": 27,
+      "source_type": "uploaded_pdf",
+      "origin": "user_upload",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "extraction_note": "Sanskrit and Hindi recovered from the embedded Noto glyphs using outline-verified font mappings. Not independently proofread. Pages with unresolved glyphs are excluded from AI explanations; check every quotation against the PDF.",
+      "coverage": "Ādi & Sabhā",
+      "pdf_sha256": "1ab71294ea9ef670359906176c4585faaff3b484b3beb0f447c24efebf8af7c6",
+      "file_size": 11939327,
+      "sort_order": 3,
+      "page_count": 2256,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 2
+        },
+        {
+          "level": 1,
+          "title": "Ādi Parva · आदिपर्व",
+          "page": 27
+        },
+        {
+          "level": 1,
+          "title": "Sabhā Parva · सभापर्व",
+          "page": 1603
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "mahabharata2",
+      "title": "Mahābhārata · Volume 2",
+      "title_sa": "महाभारत · खण्ड 2",
+      "edition": "Gita Press · Sanskrit & Hindi · Vana & Virāṭa",
+      "work": "mahabharata",
+      "category": "mahabharata",
+      "collection_label": "MAHĀBHĀRATA",
+      "volume": 2,
+      "languages": [
+        "sa",
+        "hi"
+      ],
+      "extraction": "glyph_decoded",
+      "filename": "Mahabharata Volume 2.pdf",
+      "stored_filename": "mahabharata2.pdf",
+      "start_page": 28,
+      "source_type": "uploaded_pdf",
+      "origin": "user_upload",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "extraction_note": "Sanskrit and Hindi recovered from the embedded Noto glyphs using outline-verified font mappings. Not independently proofread. Pages with unresolved glyphs are excluded from AI explanations; check every quotation against the PDF.",
+      "coverage": "Vana & Virāṭa",
+      "pdf_sha256": "eb726bd876ed640618040a49f1b399d53497180191ea9edcd210addb8ee9733e",
+      "file_size": 16500656,
+      "sort_order": 4,
+      "page_count": 2580,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 2
+        },
+        {
+          "level": 1,
+          "title": "Vana Parva · वनपर्व",
+          "page": 28
+        },
+        {
+          "level": 1,
+          "title": "Virāṭa Parva · विराटपर्व",
+          "page": 2122
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "mahabharata3",
+      "title": "Mahābhārata · Volume 3",
+      "title_sa": "महाभारत · खण्ड 3",
+      "edition": "Gita Press · Sanskrit & Hindi · Udyoga & Bhīṣma",
+      "work": "mahabharata",
+      "category": "mahabharata",
+      "collection_label": "MAHĀBHĀRATA",
+      "volume": 3,
+      "languages": [
+        "sa",
+        "hi"
+      ],
+      "extraction": "glyph_decoded",
+      "filename": "Mahabharata Volume 3.pdf",
+      "stored_filename": "mahabharata3.pdf",
+      "start_page": 24,
+      "source_type": "uploaded_pdf",
+      "origin": "user_upload",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "extraction_note": "Sanskrit and Hindi recovered from the embedded Noto glyphs using outline-verified font mappings. Not independently proofread. Pages with unresolved glyphs are excluded from AI explanations; check every quotation against the PDF.",
+      "coverage": "Udyoga & Bhīṣma",
+      "pdf_sha256": "4bc503a3b8d69114ba747546eaee5683ff9208cfb9851e80a0ed8227c2dd25f9",
+      "file_size": 12222494,
+      "sort_order": 5,
+      "page_count": 2343,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 2
+        },
+        {
+          "level": 1,
+          "title": "Udyoga Parva · उद्योगपर्व",
+          "page": 24
+        },
+        {
+          "level": 1,
+          "title": "Bhīṣma Parva · भीष्मपर्व",
+          "page": 1229
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "mahabharata4",
+      "title": "Mahābhārata · Volume 4",
+      "title_sa": "महाभारत · खण्ड 4",
+      "edition": "Gita Press · Sanskrit & Hindi · Droṇa, Karṇa, Śalya, Sauptika & Strī",
+      "work": "mahabharata",
+      "category": "mahabharata",
+      "collection_label": "MAHĀBHĀRATA",
+      "volume": 4,
+      "languages": [
+        "sa",
+        "hi"
+      ],
+      "extraction": "glyph_decoded",
+      "filename": "Mahabharata Volume 4.pdf",
+      "stored_filename": "mahabharata4.pdf",
+      "start_page": 33,
+      "source_type": "uploaded_pdf",
+      "origin": "user_upload",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "extraction_note": "Sanskrit and Hindi recovered from the embedded Noto glyphs using outline-verified font mappings. Not independently proofread. Pages with unresolved glyphs are excluded from AI explanations; check every quotation against the PDF.",
+      "coverage": "Droṇa, Karṇa, Śalya, Sauptika & Strī",
+      "pdf_sha256": "fb4f4a25bd4e54ff112aae1c59c9edc8488e50fe53757c0c550940c496c5cdfb",
+      "file_size": 15189908,
+      "sort_order": 6,
+      "page_count": 3237,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 2
+        },
+        {
+          "level": 1,
+          "title": "Droṇa Parva · द्रोणपर्व",
+          "page": 33
+        },
+        {
+          "level": 1,
+          "title": "Karṇa Parva · कर्णपर्व",
+          "page": 1586
+        },
+        {
+          "level": 1,
+          "title": "Śalya Parva · शल्यपर्व",
+          "page": 2430
+        },
+        {
+          "level": 1,
+          "title": "Sauptika Parva · सौप्तिकपर्व",
+          "page": 2974
+        },
+        {
+          "level": 1,
+          "title": "Strī Parva · स्त्रीपर्व",
+          "page": 3100
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "mahabharata5",
+      "title": "Mahābhārata · Volume 5",
+      "title_sa": "महाभारत · खण्ड 5",
+      "edition": "Gita Press · Sanskrit & Hindi · Śānti",
+      "work": "mahabharata",
+      "category": "mahabharata",
+      "collection_label": "MAHĀBHĀRATA",
+      "volume": 5,
+      "languages": [
+        "sa",
+        "hi"
+      ],
+      "extraction": "glyph_decoded",
+      "filename": "Mahabharata Volume 5.pdf",
+      "stored_filename": "mahabharata5.pdf",
+      "start_page": 25,
+      "source_type": "uploaded_pdf",
+      "origin": "user_upload",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "extraction_note": "Sanskrit and Hindi recovered from the embedded Noto glyphs using outline-verified font mappings. Not independently proofread. Pages with unresolved glyphs are excluded from AI explanations; check every quotation against the PDF.",
+      "coverage": "Śānti",
+      "pdf_sha256": "a4f5cd37d1b0f2cf46c3ece255a1436af655b50162c467a62b6d4a6baba5633e",
+      "file_size": 10253166,
+      "sort_order": 7,
+      "page_count": 2450,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 2
+        },
+        {
+          "level": 1,
+          "title": "Śānti Parva · शान्तिपर्व",
+          "page": 25
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "mahabharata6",
+      "title": "Mahābhārata · Volume 6",
+      "title_sa": "महाभारत · खण्ड 6",
+      "edition": "Gita Press · Sanskrit & Hindi · Anuśāsana, Āśvamedhika, Āśramavāsika, Mausala, Mahāprasthānika & Svargārohaṇa",
+      "work": "mahabharata",
+      "category": "mahabharata",
+      "collection_label": "MAHĀBHĀRATA",
+      "volume": 6,
+      "languages": [
+        "sa",
+        "hi"
+      ],
+      "extraction": "glyph_decoded",
+      "filename": "Mahabharata Volume 6.pdf",
+      "stored_filename": "mahabharata6.pdf",
+      "start_page": 25,
+      "source_type": "uploaded_pdf",
+      "origin": "user_upload",
+      "rights": "User-supplied copy; original publisher rights retained. No redistribution license inferred.",
+      "extraction_note": "Sanskrit and Hindi recovered from the embedded Noto glyphs using outline-verified font mappings. Not independently proofread. Pages with unresolved glyphs are excluded from AI explanations; check every quotation against the PDF.",
+      "coverage": "Anuśāsana, Āśvamedhika, Āśramavāsika, Mausala, Mahāprasthānika & Svargārohaṇa",
+      "pdf_sha256": "53f0bacfde175610dbd0b6b0439b502a6897fc09314ccf614dfe8dc543b82144",
+      "file_size": 12009642,
+      "sort_order": 8,
+      "page_count": 2566,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 2
+        },
+        {
+          "level": 1,
+          "title": "Anuśāsana Parva · अनुशासनपर्व",
+          "page": 25
+        },
+        {
+          "level": 1,
+          "title": "Āśvamedhika Parva · आश्वमेधिकपर्व",
+          "page": 1567
+        },
+        {
+          "level": 1,
+          "title": "Āśramavāsika Parva · आश्रमवासिकपर्व",
+          "page": 2243
+        },
+        {
+          "level": 1,
+          "title": "Mausala Parva · मौसलपर्व",
+          "page": 2434
+        },
+        {
+          "level": 1,
+          "title": "Mahāprasthānika Parva · महाप्रस्थानिकपर्व",
+          "page": 2488
+        },
+        {
+          "level": 1,
+          "title": "Svargārohaṇa Parva · स्वर्गारोहणपर्व",
+          "page": 2507
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "upanishads1",
+      "title": "The Upanishads · Part I",
+      "title_sa": "उपनिषद् · भाग १",
+      "edition": "F. Max Müller · English translation · 1879",
+      "translator": "F. Max Müller",
+      "publisher": "Clarendon Press, Oxford",
+      "publication_year": 1879,
+      "work": "upanishads",
+      "category": "upanishads",
+      "collection_label": "UPANISHADS",
+      "volume": 1,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "upanishads1_1879.pdf",
+      "stored_filename": "upanishads1.pdf",
+      "start_page": 113,
+      "cover_page": 9,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/upanishads01ml",
+      "download_url": "https://archive.org/download/upanishads01ml/upanishads01ml.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "Chāndogya, Kena (Talavakāra), Aitareya, Kauṣītaki and Īśā (Vājasaneyi-Saṃhitā).",
+      "pdf_sha256": "93ea52e870ede16f6787939995a6686263232fddd5d8349fc773ef8b88f2e0b5",
+      "file_size": 21969787,
+      "sort_order": 9,
+      "page_count": 468,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 9
+        },
+        {
+          "level": 1,
+          "title": "Chāndogya Upanishad",
+          "page": 113
+        },
+        {
+          "level": 1,
+          "title": "Kena / Talavakāra Upanishad",
+          "page": 259
+        },
+        {
+          "level": 1,
+          "title": "Aitareya Āraṇyaka (includes the Upanishad)",
+          "page": 269
+        },
+        {
+          "level": 1,
+          "title": "Kauṣītaki Upanishad",
+          "page": 383
+        },
+        {
+          "level": 1,
+          "title": "Īśā / Vājasaneyi-Saṃhitā Upanishad",
+          "page": 423
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "upanishads2",
+      "title": "The Upanishads · Part II",
+      "title_sa": "उपनिषद् · भाग २",
+      "edition": "F. Max Müller · English translation · 1884",
+      "translator": "F. Max Müller",
+      "publisher": "Clarendon Press, Oxford",
+      "publication_year": 1884,
+      "work": "upanishads",
+      "category": "upanishads",
+      "collection_label": "UPANISHADS",
+      "volume": 2,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "upanishads2_1884.pdf",
+      "stored_filename": "upanishads2.pdf",
+      "start_page": 59,
+      "cover_page": 9,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/upanishads02ml",
+      "download_url": "https://archive.org/download/upanishads02ml/upanishads02ml.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "Kaṭha, Muṇḍaka, Taittirīya, Bṛhadāraṇyaka, Śvetāśvatara, Praśna and Maitrāyaṇīya. Māṇḍūkya is not included in these two volumes.",
+      "pdf_sha256": "40b26b38d69ebfcafc01f5438cb61e27761e0849b8992bf24a7af32deaf51ab1",
+      "file_size": 21252467,
+      "sort_order": 10,
+      "page_count": 452,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 9
+        },
+        {
+          "level": 1,
+          "title": "Kaṭha Upanishad",
+          "page": 59
+        },
+        {
+          "level": 1,
+          "title": "Muṇḍaka Upanishad",
+          "page": 85
+        },
+        {
+          "level": 1,
+          "title": "Taittirīya Upanishad",
+          "page": 103
+        },
+        {
+          "level": 1,
+          "title": "Bṛhadāraṇyaka Upanishad",
+          "page": 131
+        },
+        {
+          "level": 1,
+          "title": "Śvetāśvatara Upanishad",
+          "page": 289
+        },
+        {
+          "level": 1,
+          "title": "Praśna Upanishad",
+          "page": 329
+        },
+        {
+          "level": 1,
+          "title": "Maitrāyaṇīya Upanishad",
+          "page": 345
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "rigveda1",
+      "title": "Hymns of the Ṛgveda · Volume I",
+      "title_sa": "ऋग्वेद · भाग १",
+      "edition": "Ralph T. H. Griffith · English translation · 1896",
+      "translator": "Ralph T. H. Griffith",
+      "publisher": "E. J. Lazarus & Co., Benares",
+      "publication_year": 1896,
+      "work": "rigveda",
+      "category": "vedas",
+      "collection_label": "VEDAS",
+      "volume": 1,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "rigveda1_1896.pdf",
+      "stored_filename": "rigveda1.pdf",
+      "start_page": 20,
+      "cover_page": 4,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/in.ernet.dli.2015.104118",
+      "download_url": "https://archive.org/download/in.ernet.dli.2015.104118/2015.104118.Hymns-Of-The-Rigveda-Voli_text.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "Books I–VI. English translation and commentary, second edition.",
+      "pdf_sha256": "a01b83330f815febf8e0aabad8a2eee61b465ccc80163246b514c57d90bf3e10",
+      "file_size": 70313423,
+      "sort_order": 11,
+      "page_count": 720,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 4
+        },
+        {
+          "level": 1,
+          "title": "Book I",
+          "page": 20
+        },
+        {
+          "level": 1,
+          "title": "Book II",
+          "page": 274
+        },
+        {
+          "level": 1,
+          "title": "Book III",
+          "page": 330
+        },
+        {
+          "level": 1,
+          "title": "Book IV",
+          "page": 406
+        },
+        {
+          "level": 1,
+          "title": "Book V",
+          "page": 478
+        },
+        {
+          "level": 1,
+          "title": "Book VI",
+          "page": 568
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "rigveda2",
+      "title": "Hymns of the Ṛgveda · Volume II",
+      "title_sa": "ऋग्वेद · भाग २",
+      "edition": "Ralph T. H. Griffith · English translation · 1897",
+      "translator": "Ralph T. H. Griffith",
+      "publisher": "E. J. Lazarus & Co., Benares",
+      "publication_year": 1897,
+      "work": "rigveda",
+      "category": "vedas",
+      "collection_label": "VEDAS",
+      "volume": 2,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "rigveda2_1897.pdf",
+      "stored_filename": "rigveda2.pdf",
+      "start_page": 10,
+      "cover_page": 6,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/in.ernet.dli.2015.195722",
+      "download_url": "https://archive.org/download/in.ernet.dli.2015.195722/2015.195722.Hymns-Of-The-Rigveda--Vol2_text.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "Books VII–X, including the Vālakhilya hymns. English translation and commentary, second edition.",
+      "pdf_sha256": "c8b027ff4034d6db471b520c0296e74fb73efaf8da0cfd9a90682ca3b60a99a2",
+      "file_size": 47726305,
+      "sort_order": 12,
+      "page_count": 688,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 6
+        },
+        {
+          "level": 1,
+          "title": "Book VII",
+          "page": 10
+        },
+        {
+          "level": 1,
+          "title": "Book VIII",
+          "page": 112
+        },
+        {
+          "level": 1,
+          "title": "Book IX",
+          "page": 280
+        },
+        {
+          "level": 1,
+          "title": "Book X",
+          "page": 394
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "samaveda",
+      "title": "Hymns of the Sāmaveda",
+      "title_sa": "सामवेद",
+      "edition": "Ralph T. H. Griffith · English translation · 1907",
+      "translator": "Ralph T. H. Griffith",
+      "publisher": "E. J. Lazarus & Co., Benares",
+      "publication_year": 1907,
+      "work": "samaveda",
+      "category": "vedas",
+      "collection_label": "VEDAS",
+      "volume": null,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "samaveda_1907.pdf",
+      "stored_filename": "samaveda.pdf",
+      "start_page": 13,
+      "cover_page": 5,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/hymnsofsmaveda00grifiala",
+      "download_url": "https://archive.org/download/hymnsofsmaveda00grifiala/hymnsofsmaveda00grifiala.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "English translation and commentary, second edition.",
+      "pdf_sha256": "503712a093859ac89883f7b1b438d167ea19dd2de5f37aac5a4b4354d153043b",
+      "file_size": 32638660,
+      "sort_order": 13,
+      "page_count": 394,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 5
+        },
+        {
+          "level": 1,
+          "title": "Part I",
+          "page": 13
+        },
+        {
+          "level": 1,
+          "title": "Part II",
+          "page": 131
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "yajurveda",
+      "title": "Texts of the White Yajurveda",
+      "title_sa": "शुक्ल यजुर्वेद",
+      "edition": "Ralph T. H. Griffith · English translation · 1899",
+      "translator": "Ralph T. H. Griffith",
+      "publisher": "E. J. Lazarus & Co., Benares",
+      "publication_year": 1899,
+      "work": "yajurveda",
+      "category": "vedas",
+      "collection_label": "VEDAS",
+      "volume": null,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "yajurveda_1899.pdf",
+      "stored_filename": "yajurveda.pdf",
+      "start_page": 26,
+      "cover_page": 6,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/in.ernet.dli.2015.215626",
+      "download_url": "https://archive.org/download/in.ernet.dli.2015.215626/2015.215626.The-Texts_text.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "White / Śukla Yajurveda (Vājasaneyi Saṃhitā). This is not every Yajurveda recension.",
+      "pdf_sha256": "5d969e242c2796e9d2a3f5d6431011f68462daab9fe4bf1ee076a7fdbb2b456f",
+      "file_size": 31219065,
+      "sort_order": 14,
+      "page_count": 371,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 6
+        },
+        {
+          "level": 1,
+          "title": "Book I — beginning of the translation",
+          "page": 26
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "atharvaveda1",
+      "title": "Hymns of the Atharvaveda · Volume I",
+      "title_sa": "अथर्ववेद · भाग १",
+      "edition": "Ralph T. H. Griffith · English translation · 1916",
+      "translator": "Ralph T. H. Griffith",
+      "publisher": "E. J. Lazarus & Co., Benares",
+      "publication_year": 1916,
+      "work": "atharvaveda",
+      "category": "vedas",
+      "collection_label": "VEDAS",
+      "volume": 1,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "atharvaveda1_1916.pdf",
+      "stored_filename": "atharvaveda1.pdf",
+      "start_page": 27,
+      "cover_page": 7,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/hymnsoftheatharv029640mbp",
+      "download_url": "https://archive.org/download/hymnsoftheatharv029640mbp/hymnsoftheatharv029640mbp.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "Books I–IX. English translation and commentary, second edition; some passages appear in Latin in the appendix.",
+      "pdf_sha256": "fd9e705c9695696b101d8df0f3bb1b3d0166d706f023753a7cc6d6f8efab3e3c",
+      "file_size": 33605306,
+      "sort_order": 15,
+      "page_count": 550,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 7
+        },
+        {
+          "level": 1,
+          "title": "Book I",
+          "page": 27
+        },
+        {
+          "level": 1,
+          "title": "Book II",
+          "page": 67
+        },
+        {
+          "level": 1,
+          "title": "Book III",
+          "page": 107
+        },
+        {
+          "level": 1,
+          "title": "Book IV",
+          "page": 155
+        },
+        {
+          "level": 1,
+          "title": "Book V",
+          "page": 213
+        },
+        {
+          "level": 1,
+          "title": "Book VI",
+          "page": 271
+        },
+        {
+          "level": 1,
+          "title": "Book VII",
+          "page": 353
+        },
+        {
+          "level": 1,
+          "title": "Book VIII",
+          "page": 411
+        },
+        {
+          "level": 1,
+          "title": "Book IX",
+          "page": 453
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    },
+    {
+      "id": "atharvaveda2",
+      "title": "Hymns of the Atharvaveda · Volume II",
+      "title_sa": "अथर्ववेद · भाग २",
+      "edition": "Ralph T. H. Griffith · English translation · 1917",
+      "translator": "Ralph T. H. Griffith",
+      "publisher": "E. J. Lazarus & Co., Benares",
+      "publication_year": 1917,
+      "work": "atharvaveda",
+      "category": "vedas",
+      "collection_label": "VEDAS",
+      "volume": 2,
+      "languages": [
+        "en"
+      ],
+      "extraction": "archive_ocr",
+      "filename": "atharvaveda2_1917.pdf",
+      "stored_filename": "atharvaveda2.pdf",
+      "start_page": 11,
+      "cover_page": 7,
+      "source_type": "book_scan",
+      "origin": "public_domain",
+      "catalog_url": "https://archive.org/details/hymnsoftheatharv029485mbp",
+      "download_url": "https://archive.org/download/hymnsoftheatharv029485mbp/hymnsoftheatharv029485mbp.pdf",
+      "rights": "Historical published edition, digitized by the source archive. The original title page and archive attribution are retained; no rights claimed in the scan.",
+      "extraction_note": "The archive OCR layer is unreviewed and has no reported confidence score. Diacritics, names and numbers may be misread. Translation and commentary belong to the named translator; check the original scan.",
+      "coverage": "Books X–XX. English translation and commentary, second edition; some passages appear in Latin in the appendix.",
+      "pdf_sha256": "7446063a15611179a145bb6fff2984c73fecd9a16b286b64d4fdbd968bc48654",
+      "file_size": 29713241,
+      "sort_order": 16,
+      "page_count": 513,
+      "toc_override": [
+        {
+          "level": 1,
+          "title": "Title & front matter",
+          "page": 7
+        },
+        {
+          "level": 1,
+          "title": "Book X",
+          "page": 11
+        },
+        {
+          "level": 1,
+          "title": "Book XI",
+          "page": 61
+        },
+        {
+          "level": 1,
+          "title": "Book XII",
+          "page": 101
+        },
+        {
+          "level": 1,
+          "title": "Book XIII",
+          "page": 141
+        },
+        {
+          "level": 1,
+          "title": "Book XIV",
+          "page": 167
+        },
+        {
+          "level": 1,
+          "title": "Book XV",
+          "page": 193
+        },
+        {
+          "level": 1,
+          "title": "Book XVI",
+          "page": 209
+        },
+        {
+          "level": 1,
+          "title": "Book XVII",
+          "page": 217
+        },
+        {
+          "level": 1,
+          "title": "Book XVIII",
+          "page": 223
+        },
+        {
+          "level": 1,
+          "title": "Book XIX",
+          "page": 267
+        },
+        {
+          "level": 1,
+          "title": "Book XX",
+          "page": 329
+        }
+      ],
+      "outline_note": "Selected section links checked against headings in the stored PDF. Not a certified verse index; use PDF page navigation for other sections."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+import AskPanel from '../AskPanel.jsx';
+import {useState} from 'react';
+import {Icon} from '../components.jsx';
+import {useApp,navigate,readPassage} from '../state.jsx';
+
+const categories=[['all','All books'],['gita','Bhagavad Gītā'],['ramayana','Rāmāyaṇa'],['mahabharata','Mahābhārata'],['upanishads','Upanishads'],['vedas','Vedas']];
+export default function Library(){
+ const {books,lang,t,title,notebook,health,user,resumePage}=useApp();
+ const [category,setCategory]=useState('all'),[query,setQuery]=useState('');
+ const count=books.reduce((n,b)=>n+b.page_count,0);
+ const shown=books.filter(b=>(category==='all'||(b.category||b.work)===category)&&[b.title,b.title_sa,b.edition,b.work].join(' ').toLowerCase().includes(query.toLowerCase()));
+ return <div className="library-page pdf-library">
+  <section className="hero"><div className="hero-copy"><p className="eyebrow">WELCOME, {user.name.toUpperCase()}</p><h1>{lang==='hi'?'मूल पृष्ठों से संवाद।':lang==='sa'?'स्वाध्यायः। मूलपृष्ठैः सह संवादः।':'Ancient pages. A living conversation.'}</h1><p className="hero-description">{lang==='hi'?'अपने ग्रंथ पढ़ें, प्रश्न पूछें और हर उत्तर से मूल पुस्तक तक लौटें। आपका अध्ययन आपकी अपनी गति से।':'Read closely, follow a question, and return to the page. Your place and reflections are saved as you go.'}</p><div className="hero-actions"><button className="primary" onClick={()=>readPassage(resumePage)}>{t('continue')} <Icon name="arrow"/></button><span className="quiet"><Icon name="book"/> Your study, at your pace</span></div></div><div className="hero-art" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="art-book"><div className="book-rule"/><span className="art-dev">स्वाध्याय</span><span className="art-sub">READ · ASK · UNDERSTAND</span><div className="book-rule"/></div></div></section>
+  <div className="collection-meta"><span><strong>{books.length}</strong> book volumes</span><span><strong>{count.toLocaleString()}</strong> original PDF pages</span><span><Icon name="link"/> Citations open book pages</span><span className="collection-note">{health.ai_enabled?'Gemini explanations enabled':'Book reading and search ready'}</span></div>
+  <section className="home-assistant"><AskPanel home/></section>
+  <div className="section-heading"><div><p className="eyebrow">YOUR BOOKSHELF</p><h2>{lang==='hi'?'पुस्तक चुनें। पढ़ना शुरू करें।':'Where will you begin today?'}</h2></div><span className="quiet">{notebook.read.length.toLocaleString()} pages read</span></div>
+  <div className="shelf-controls"><div className="collection-tabs" aria-label="Book category">{categories.map(([key,label])=><button key={key} aria-pressed={category===key} onClick={()=>setCategory(key)}>{label}<small>{key==='all'?books.length:books.filter(b=>(b.category||b.work)===key).length}</small></button>)}</div><label className="shelf-search"><Icon name="search"/><span className="sr-only">Filter books</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Find a book or edition…"/></label></div>
+  <div className="pdf-book-grid">{shown.map(b=>{
+   const readCount=notebook.read.filter(id=>id.startsWith(b.id+':')).length;
+   return <article className="pdf-book-card" key={b.id}><button className="pdf-cover-button" onClick={()=>readPassage(b.id+':'+b.start_page)} aria-label={t('begin')+': '+title(b)}><img src={b.cover_url} alt={title(b)+' — book cover'} loading="lazy"/><span className="cover-badge">{b.origin==='public_domain'?'BOOK SCAN':'YOUR PDF'}</span>{b.volume&&<span className="volume-badge">VOL. {b.volume}</span>}</button><div className="book-info"><p className="eyebrow">{b.collection_label || (b.work==='gita'?'BHAGAVAD GĪTĀ':b.work.toUpperCase())}<span>{b.page_count.toLocaleString()} pages</span></p><h3>{title(b)}</h3><p className="book-description">{b.edition}</p><div className="book-bottom">{b.languages.map(l=><span className="language-dot" key={l}>{l.toUpperCase()}</span>)}<button className="circle-button" onClick={()=>readPassage(b.id+':'+b.start_page)} aria-label={'Read '+title(b)}><Icon name="arrow"/></button></div><div className="book-read-progress"><span style={{width:(readCount/b.page_count*100)+'%'}}/></div><p className="index-status">{readCount?readCount+' pages read · ':''}{b.indexed_pages.toLocaleString()} searchable pages</p></div></article>;
+  })}</div>{!shown.length&&<div className="empty-state">No books match this filter.</div>}
+  <aside className="editorial-note"><Icon name="leaf"/><div><strong>Read every edition in its own words.</strong><p>Your uploaded books sit beside attributed historical book scans. English translations are labelled by translator; they do not replace Sanskrit originals. Open the original page to check search text and AI interpretations.</p></div><button className="text-button" onClick={()=>navigate('sources')}>{t('sources')} <Icon name="arrow"/></button></aside>
+ </div>;
+}

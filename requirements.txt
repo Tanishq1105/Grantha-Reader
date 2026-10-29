@@ -1,0 +1,12 @@
+Flask>=3.1,<3.2
+SQLAlchemy>=2.0,<2.1
+psycopg[binary]>=3.2,<4
+python-dotenv>=1.0,<2
+gunicorn>=23,<24
+PyMuPDF>=1.26,<2
+Pillow>=11,<13
+
+# Local CPU embeddings; no GPU or embedding API needed.
+onnxruntime>=1.23,<2
+tokenizers>=0.22,<0.24
+numpy>=2.2,<3

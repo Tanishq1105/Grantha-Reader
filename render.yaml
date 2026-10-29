@@ -1,0 +1,55 @@
+# This Blueprint uses paid services. Review current Render pricing before applying.
+services:
+  - type: web
+    name: grantha-reader
+    runtime: docker
+    plan: 1c-2g
+    region: singapore
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: SESSION_COOKIE_SECURE
+        value: "true"
+      - key: SIGNUP_ENABLED
+        value: "false"
+      - key: SUPABASE_DB_URL
+        sync: false
+      - key: AI_ENABLED
+        value: "true"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: GEMINI_API_MODE
+        value: generate_content
+      - key: GEMINI_RESPONSE_MODE
+        value: stream
+      - key: GEMINI_RESPONSE_TIMEOUT_SECONDS
+        value: "180"
+      - key: GEMINI_SECOND_PASS
+        value: "false"
+      - key: RAG_ENABLED
+        value: "true"
+      - key: RAG_CPU_THREADS
+        value: "2"
+      - key: GEMINI_THINKING_LEVEL
+        value: low
+      - key: GEMINI_TIMEOUT_SECONDS
+        value: "180"
+      - key: GEMINI_REQUEST_BUDGET_SECONDS
+        value: "360"
+      - key: GEMINI_MAX_OUTPUT_TOKENS
+        value: "4096"
+      - key: GEMINI_CONTEXT_CHARACTERS
+        value: "3600"
+      - key: GEMINI_MAX_RETRIES
+        value: "0"
+      - key: EMBEDDINGS_ENABLED
+        value: "false"
+      - key: GEMINI_EMBEDDING_MODEL
+        value: gemini-embedding-2
+      - key: EMBEDDING_DIMENSIONS
+        value: "768"

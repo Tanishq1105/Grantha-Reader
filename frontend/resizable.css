@@ -1,0 +1,35 @@
+/* The contents rail stays independent of the adjustable book / assistant area. */
+.reader-v4.has-ask .pdf-reader-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+.reader-v4.has-contents.has-ask .pdf-reader-grid{grid-template-columns:210px minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+.reader-split{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;gap:8px}
+.split-controls{display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex:none;font-size:11px;line-height:1.4}
+.split-controls button,.split-controls select{font-size:11px;line-height:1.4;padding:7px 9px;border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink);white-space:nowrap}
+.split-controls label{margin:0}.split-controls select{height:31px;padding-right:24px;max-width:145px}
+.split-focus-controls{display:flex;gap:2px;padding:3px;border-radius:7px;background:#e8e9e0}
+.split-focus-controls button{border:0;background:transparent;padding:5px 9px;color:var(--muted)}
+.split-focus-controls button[aria-pressed=true]{background:var(--white);color:var(--green);box-shadow:0 1px 4px #142e3015}
+.split-narrow-hint{font-size:10px;color:var(--muted)}
+.split-surface{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);flex:1;min-height:0;min-width:0;overflow:hidden}
+.split-pane{min-width:0;min-height:0;overflow:hidden;height:100%}.split-pane[hidden]{display:none!important}
+.reader-v4 .split-pane>.pdf-page-column,.reader-v4 .split-pane>.reader-questions{height:100%;width:100%;min-height:0;min-width:0;max-width:none;position:static;inset:auto;z-index:auto;box-shadow:none;grid-column:auto;grid-row:auto}
+.split-handle{display:flex;align-items:center;justify-content:center;min-height:0;min-width:0;cursor:col-resize;touch-action:none;user-select:none;outline-offset:-1px;border-radius:6px;transition:background .15s}
+.split-handle>span{display:block;width:4px;height:38px;border-radius:9px;background:#a5b39c;box-shadow:0 0 0 1px #fff7}
+.split-handle:hover,.split-handle:focus-visible,.is-dragging>.split-handle{background:#dbe5d3}.split-handle:focus-visible{outline:2px solid var(--green)}
+.split-surface[data-axis=vertical]>.split-handle{cursor:row-resize}.split-surface[data-axis=vertical]>.split-handle>span{width:38px;height:4px}
+.is-dragging,.is-dragging *{user-select:none!important}.is-dragging .split-pane{pointer-events:none}
+.is-dragging[data-axis=horizontal]{cursor:col-resize}.is-dragging[data-axis=vertical]{cursor:row-resize}
+.split-surface[data-axis=vertical].is-split .assistant-header{padding:8px 12px;gap:8px}
+.split-surface[data-axis=vertical].is-split .assistant-header h2{font-size:13px}.split-surface[data-axis=vertical].is-split .assistant-symbol{width:28px;height:28px}
+.split-surface[data-axis=vertical].is-split .assistant-settings{padding:5px 10px;gap:5px}
+.split-surface[data-axis=vertical].is-split .assistant-composer{padding:6px 10px}.split-surface[data-axis=vertical].is-split #ask-form{padding:6px 8px}
+.split-surface[data-axis=vertical].is-split #ask-form textarea{min-height:32px;height:32px;max-height:64px}
+.split-surface[data-axis=vertical].is-split .assistant-grounding-note{margin-top:4px;font-size:8px}
+.split-surface[data-axis=vertical].is-split .assistant-conversation{padding:10px 12px}
+.split-surface[data-axis=vertical].is-split .pdf-toolbar{padding:4px 9px;min-height:40px}
+.split-surface[data-axis=vertical].is-split .reader-modebar{padding:3px 7px}.split-surface[data-axis=vertical].is-split .reading-navigation{padding:5px 9px;min-height:34px}
+@media(max-width:900px){
+ .reader-v4.has-contents .pdf-reader-grid,.reader-v4.has-contents.has-ask .pdf-reader-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+ .reader-v4.has-contents .pdf-sidebar{position:absolute;inset:0 auto 0 0;width:min(85%,280px);z-index:15;box-shadow:6px 0 24px #172f3030}
+ .split-controls{gap:5px}.split-controls button,.split-controls select{font-size:10px;padding:6px 7px}.split-controls select{height:28px}.split-swap span{display:none}
+ .split-focus-controls button{padding:5px 7px}
+}

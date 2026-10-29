@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest>=8,<10
+fonttools>=4.50,<5
+uharfbuzz>=0.40,<1

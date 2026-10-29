@@ -1,0 +1,20 @@
+{
+  "signature": {
+    "version": 1,
+    "corpus": "72d8003db1cbc13a4a7ad39aa53a87954f8af471160b58a0a67a2eaaf5f2ff73",
+    "model_sha256": "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88",
+    "tokenizer_sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+    "tokens": 224,
+    "overlap": 24,
+    "count": 73819,
+    "dimensions": 384
+  },
+  "corpus_file_sha256": "50c61795316dd6b51ae383370bb400a0cf86b2593f51f7be13a52cf1dd09954f",
+  "rows_sha256": "c373a2dead194b8bd3a28084c04b66232077a72eea109012febf2448906c3ed3",
+  "vectors_sha256": "3c3d0dcd1b59dae6471ae3c320fd1fe820fbec5db1f82fd61534c4f2156d7696",
+  "vectors_size": 56693120,
+  "files": {
+    "vectors.npy.xz": "a2dbd9dcc8607ca3556843f3c54f3c4397a9a88887a2cec9ce40fdcb8a077189",
+    "rows.json.xz": "0b02f602a6f5c4cb8fcaf5b51f96f04bccb48bd9aabb735a047c3b0dcb886d20"
+  }
+}

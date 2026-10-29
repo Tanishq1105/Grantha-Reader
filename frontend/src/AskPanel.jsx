@@ -1,0 +1,71 @@
+import {useRef,useState,useEffect} from 'react';
+import {Icon} from './components.jsx';
+import {api} from './api.js';
+import {useApp,readPassage} from './state.jsx';
+const labels={
+ en:{heading:'Ask this book',all:'Ask the collection',placeholder:'What would you like to understand?',clear:'New conversation',close:'Close questions',sources:'Source pages',generation:'Waiting for Gemini',receiving:'Receiving Gemini’s response',verification:'Checking citations and quotations',searching:'Finding relevant passages',queued:'Starting your question',retrying:'Gemini is busy. Retrying once…',cancelling:'Stopping this question…',reconnecting:'Reconnecting to your question…',stop:'Stop',retry:'Retry question',empty:'Begin with a question.',emptyText:'Open a citation to read the original page and its surrounding passage.',hint:'Ask about the collection. If the books do not support an answer, I’ll say so.',checked:'Using excerpts from your books.'},
+ hi:{heading:'इस पुस्तक से पूछें',all:'सभी ग्रंथों से पूछें',placeholder:'आप क्या समझना चाहते हैं?',clear:'नई बातचीत',close:'प्रश्न बंद करें',sources:'मूल पृष्ठ',generation:'उत्तर तैयार हो रहा है',receiving:'Gemini का उत्तर प्राप्त हो रहा है',verification:'मूल पुस्तक से उत्तर की जाँच हो रही है',searching:'संबंधित अंश खोजे जा रहे हैं',queued:'प्रश्न शुरू हो रहा है',retrying:'एक बार फिर प्रयास हो रहा है…',cancelling:'प्रश्न रोका जा रहा है…',reconnecting:'प्रश्न से फिर जुड़ रहे हैं…',stop:'रोकें',retry:'फिर पूछें',empty:'एक प्रश्न से शुरुआत करें।',emptyText:'संदर्भ खोलकर मूल पृष्ठ और आसपास का अंश पढ़ें।',hint:'संग्रह के बारे में पूछें। पर्याप्त आधार न मिलने पर स्पष्ट बताया जाएगा।',checked:'मूल पृष्ठ से जाँच के बाद उत्तर दिखेगा।'},
+ sa:{heading:'ग्रन्थं पृच्छतु',all:'सर्वग्रन्थान् पृच्छतु',placeholder:'किं ज्ञातुम् इच्छति?',clear:'नवः संवादः',close:'प्रश्नान् पिदधातु',sources:'मूलपृष्ठानि',generation:'उत्तरं निर्मीयते',receiving:'उत्तरं प्राप्यते',verification:'मूलपृष्ठैः उत्तरं परीक्ष्यते',searching:'सम्बद्धाः अंशाः अन्विष्यन्ते',queued:'प्रश्नः आरभ्यते',retrying:'पुनः प्रयासः क्रियते…',cancelling:'प्रश्नः निरुध्यते…',reconnecting:'पुनः संयोजनम्…',stop:'विरमतु',retry:'पुनः पृच्छतु',empty:'प्रश्नेन आरभताम्।',emptyText:'मूलपृष्ठानि उत्तरस्य आधारः। प्रसङ्गं ज्ञातुं स्रोतः पश्यतु।',hint:'ग्रन्थसङ्ग्रहं पृच्छतु। अपर्याप्तप्रमाणे स्पष्टं निवेदयिष्यते।',checked:'परीक्षणानन्तरम् उत्तरं दृश्यते।'}
+};
+export default function AskPanel({passage=null,book=null,selection='',clearSelection,onClose,home=false}){
+ const {books,health,lang,t,mode,setMode,conversations,pending,askQuestion,cancelQuestion,clearConversation}=useApp();
+ const l=labels[lang]||labels.en,channel=book?.id||'all';
+ const [scope,setScope]=useState(book?'book':'all'),[question,setQuestion]=useState(''),[selectedBook,setSelectedBook]=useState('all');
+ const [optionsOpen,setOptionsOpen]=useState(false);
+ const input=useRef(null),chat=useRef(null),stick=useRef(true),messages=conversations[channel]||[],current=pending?.channel===channel;
+ useEffect(()=>{
+  const element=chat.current;if(!element||!stick.current)return;
+  if(messages.at(-1)?.role==='assistant'){
+   const answer=element.querySelector('.answer:last-child');
+   if(answer)element.scrollTop+=answer.getBoundingClientRect().top-element.getBoundingClientRect().top-16;
+  }else element.scrollTop=element.scrollHeight;
+ },[messages]);
+ useEffect(()=>{
+  const element=chat.current;if(!element||typeof ResizeObserver!=='function')return;
+  const observer=new ResizeObserver(()=>{if(stick.current)element.scrollTop=element.scrollHeight;});
+  observer.observe(element);return()=>observer.disconnect();
+ },[]);
+ function payload(q){return {question:q,language:lang,mode,scope:home?(selectedBook==='all'?'all':'book'):scope,books:home?(selectedBook==='all'?null:[selectedBook]):scope==='all'?null:[book.id],...(passage?{page_id:passage.id,selected_text:selection}:{}),history:messages.filter(m=>m.role==='user').slice(-4).map(m=>m.text)};}
+ function ask(event){event.preventDefault();const q=question.trim();if(pending||q.length<2)return;stick.current=true;setOptionsOpen(false);setQuestion('');askQuestion(channel,payload(q));}
+ function citationLabel(id){const [bid,page]=id.split(':');const b=books.find(b=>b.id===bid);return `${b?.title||bid} · PDF ${page}`;}
+ const suggestions=home?(lang==='hi'?['गीता में कर्तव्य के बारे में क्या कहा गया है?','राम को वनवास क्यों मिला?','उपनिषदों में आत्मा का क्या अर्थ है?']:lang==='sa'?['गीतायां कर्तव्यविषये किम् उक्तम्?','रामः वनं किमर्थं गतः?','उपनिषत्सु आत्मा कः?']:['What does the Gita say about duty?','Why was Rama sent into exile?','What do the Upanishads say about the self?']):lang==='hi'?['इस पृष्ठ को सरल शब्दों में समझाएँ।','इस पृष्ठ की मुख्य बातें क्या हैं?']:lang==='sa'?['अस्य पृष्ठस्य अर्थं सरलतया विवृणोतु।','अस्य पृष्ठस्य मुख्यविषयाः के?']:['Explain this page in simple terms.','What are the key ideas on this page?'];
+ return <aside className={'ask-panel pdf-ask assistant-panel '+(home?'home-ask':'')} aria-label={home?l.all:t('ask')}>
+  <header className="assistant-header"><span className="assistant-symbol"><Icon name="sparkle"/></span><div><h2>{home?l.all:l.heading}</h2><p>{book?`PDF ${passage.page} · ${book.title}`:l.hint}</p></div><div className="assistant-actions"><button className="icon-button" aria-label={l.clear} title={l.clear} disabled={!!pending||!messages.length} onClick={()=>clearConversation(channel)}><Icon name="new"/></button>{onClose&&<button className="icon-button" aria-label={l.close} onClick={onClose}><Icon name="close"/></button>}</div></header>
+  <div className="assistant-options"><button className="assistant-options-toggle" aria-label={lang==='hi'?'उत्तर सेटिंग':'Answer settings'} aria-expanded={optionsOpen} onClick={()=>setOptionsOpen(x=>!x)}><span>{t(mode)} · {home?(selectedBook==='all'?t('all'):books.find(b=>b.id===selectedBook)?.title):scope==='page'?t('page'):scope==='book'?t('current'):t('all')}</span><span>{optionsOpen?'−':'⌄'}</span></button>{optionsOpen&&<div className="assistant-settings"><div className="mode-tabs">{['explain','strict'].map(m=><button key={m} aria-pressed={mode===m} className={mode===m?'selected':''} onClick={()=>setMode(m)}>{t(m)}</button>)}</div>{home?<label className="assistant-scope"><span>{t('library')}</span><select value={selectedBook} onChange={e=>setSelectedBook(e.target.value)}><option value="all">{t('all')}</option>{books.map(b=><option key={b.id} value={b.id}>{b.title}</option>)}</select></label>:<label className="assistant-scope"><span>Scope</span><select id="ask-scope" aria-label="Question scope" value={scope} onChange={e=>setScope(e.target.value)}><option value="page">{t('page')} + surrounding pages</option><option value="book">{t('current')}</option><option value="all">{t('all')}</option></select></label>}</div>}</div>
+  {mode==='explain'&&!health.ai_enabled&&<p className="assistant-notice">Add GEMINI_API_KEY on the server to enable AI. Source pages work now.</p>}
+  <div id={home?'home-chat-messages':'chat-messages'} className="assistant-conversation" ref={chat} aria-live="polite" aria-busy={!!current} onScroll={()=>{const e=chat.current;stick.current=e.scrollHeight-e.scrollTop-e.clientHeight<80;}}>
+   {!messages.length&&!current&&<div className="assistant-empty"><span><Icon name="book"/></span><h3>{l.empty}</h3><p>{l.emptyText}</p><div className="suggested-questions">{suggestions.map(s=><button key={s} onClick={()=>{setQuestion(s);if(book)setScope('page');input.current?.focus();}}>{s}<Icon name="arrow"/></button>)}</div></div>}
+   {messages.map((m,i)=>m.role==='user'?<div key={i} className="user-question"><small>{m.page?citationLabel(`${m.book_id}:${m.page}`):l.all}</small><p>{m.text}</p></div>:<article key={i} className={'answer '+(m.provider_error?'answer-error':'')}>
+    <p className="answer-label"><Icon name={m.generated?'sparkle':'book'}/>{m.generated?t('interpretation'):m.provider_error?'AI explanation unavailable':l.sources}</p>
+    {(m.claims||[]).map((claim,j)=><div className="claim" key={j}><p>{claim.text}</p><div className="claim-citations">{claim.citation_ids.map(id=><button key={id} className="citation" onClick={()=>readPassage(id)}>{citationLabel(id)} ↗</button>)}</div>{claim.supporting_quote&&<details className="quote-evidence"><summary>{lang==='hi'?'मूल उद्धरण देखें':'View supporting excerpt'}</summary><blockquote>{claim.supporting_quote}</blockquote></details>}</div>)}
+    <p className={m.generated?'answer-footnote':'answer-message'}>{m.message}</p>{m.detail&&<p className="small quiet">{m.detail}</p>}
+    {m.provider_error&&<ProviderFailure message={m} lang={lang} disabled={!!pending}/>}
+    {!!m.evidence?.length&&<details className="answer-sources"><summary>{l.sources} <span>{m.evidence.length}</span></summary><div className="evidence-list">{m.evidence.map(p=><button key={p.id} className="evidence-card" onClick={()=>readPassage(p.id)}><span>{citationLabel(p.id)} ↗</span><p>{(p.reference_excerpt||p.text||'').slice(0,220)}{(p.reference_excerpt||p.text||'').length>220?'…':''}</p><small>{p.extraction?.includes('ocr')?'OCR · check original page':'Extracted PDF text'}</small></button>)}</div></details>}
+    {['provider_unavailable','connection_error','busy','cancelled'].includes(m.status)&&m.retryPayload&&<button className="soft-button retry-question" disabled={!!pending} onClick={()=>askQuestion(channel,m.retryPayload)}><Icon name="refresh"/>{l.retry}</button>}
+   </article>)}
+   {current&&<div className="assistant-progress" role="status"><span className="progress-dot"/><div><strong>{l[pending.stage]||l.generation}</strong><p>{l.checked}</p><Elapsed started={pending.started}/>{pending.cancelError&&<p>{pending.cancelError}</p>}</div></div>}
+  </div>
+  {pending&&!current&&<p className="assistant-notice" role="status">A question in another conversation is still running.</p>}
+  <div className="assistant-composer">{selection&&<div className="ask-selection"><span>Selected excerpt · {selection.length} characters</span><p>{selection.slice(0,100)}…</p><button className="text-button" onClick={clearSelection}>{t('clear')}</button></div>}
+   <form id={home?'home-ask-form':'ask-form'} onSubmit={ask}><label className="sr-only" htmlFor={home?'home-question':'question'}>{home?l.placeholder:t('question')}</label><textarea id={home?'home-question':'question'} ref={input} value={question} onChange={e=>setQuestion(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();e.currentTarget.form.requestSubmit();}}} rows="2" minLength="2" maxLength="1000" placeholder={l.placeholder} required/><div className="composer-bottom"><span>{question.length}/1000 · Ctrl + Enter</span>{current?<button type="button" className="soft-button" disabled={pending.stage==='cancelling'} onClick={cancelQuestion}><Icon name="stop"/>{l.stop}</button>:<button className="primary" disabled={!!pending||question.trim().length<2}>{t('send')}<Icon name="arrow"/></button>}</div></form>
+   <p className="assistant-grounding-note">{mode==='strict'?'Original excerpts only.':lang==='hi'?'AI से त्रुटि हो सकती है। मूल पृष्ठ जाँचें।':lang==='sa'?'AI त्रुटिः सम्भवति। मूलपृष्ठानि पश्यतु।':'AI can make mistakes. Check the cited original pages.'}</p>
+  </div>
+ </aside>;
+}
+function Elapsed({started}){const [seconds,setSeconds]=useState(0);useEffect(()=>{const update=()=>setSeconds(Math.floor((Date.now()-started)/1000));update();const id=setInterval(update,1000);return()=>clearInterval(id);},[started]);return <small>{seconds}s elapsed</small>;}
+function ProviderFailure({message:m,lang,disabled}){
+ const [checking,setChecking]=useState(false),[check,setCheck]=useState(null),[copyStatus,setCopyStatus]=useState('');
+ async function runCheck(){setChecking(true);setCheck(null);setCopyStatus('');try{setCheck(await api('/ai/check',{method:'POST',body:'{}',timeoutMs:330000}));}catch(error){setCheck({result:'failed',detail:error.message});}finally{setChecking(false);}}
+ async function copy(){try{await navigator.clipboard.writeText(JSON.stringify(check,null,2));setCopyStatus('Copied');}catch{setCopyStatus('Select and copy the diagnostic text below.');}}
+ return <>{Number.isInteger(m.retry_after_seconds)&&m.retry_after_seconds>0&&<p className="small">{lang==='hi'?`कम से कम ${m.retry_after_seconds} सेकंड बाद फिर प्रयास करें।`:`Wait at least ${m.retry_after_seconds} seconds before trying again.`}</p>}
+ <details className="provider-details"><summary>{lang==='hi'?'त्रुटि का विवरण':'Diagnostic details'}</summary>
+ <p>{m.model||'Gemini'}{m.provider_http_status?` HTTP ${m.provider_http_status}`:''} · {m.provider_code||m.provider_error}</p>
+ {m.response_mode&&<p>Response: {m.response_mode==='json'?'Complete JSON':m.response_mode==='generate_content_stream'?'GenerateContent stream · checked before display':'Interactions stream'}</p>}
+ {Number.isInteger(m.stream_event_count)&&<p>Received chunks: {m.stream_event_count} · Last event: {m.stream_last_event||'none'}</p>}
+ <p>{m.request_stage==='verification'?'Source verification':m.request_stage==='generation'?'Answer generation':'Request setup'} · {m.api_calls_attempted??0} API call(s)</p>
+ {m.context_excerpts!=null&&<p>Sent: {m.context_excerpts} excerpts · {m.context_characters} source characters</p>}
+ {m.response_timeout_seconds&&<p>Response timeout: {m.response_timeout_seconds}s</p>}
+ {(m.request_attempts||[]).map(a=><p key={a.number}>Attempt {a.number}: {a.phase==='reading_response'?'Reading Google’s response':'Connecting / waiting for Google'} · {a.http_status?`HTTP ${a.http_status} · `:''}{a.outcome} · {a.elapsed_seconds}s</p>)}
+ </details><div className="gemini-check"><button type="button" className="soft-button" disabled={disabled||checking} onClick={runCheck}>{checking?'Testing Gemini…':'Test Gemini connection'}</button><p className="small quiet">One small request without book text. Use this to distinguish a provider or connection problem from book retrieval.</p>
+ {check&&<div role="status"><p>{check.result==='ok'?'Gemini answered the small connection check.':'Gemini connection check failed.'}</p>{check.detail&&<p>{check.detail}</p>}<button type="button" className="text-button" onClick={copy}>{copyStatus||'Copy diagnostic'}</button><details><summary>Connection check result</summary><pre>{JSON.stringify(check,null,2)}</pre></details></div>}</div></>;
+}
