@@ -16,6 +16,8 @@ from flask import g, Flask, jsonify, request, send_from_directory, send_file
 from dotenv import load_dotenv
 from .db import ROOT, Store, engine_for, initialize
 from .retrieval import Retriever, tokenize, infer_books
+from .book_storage import digest, PageSequence
+from .low_memory_rag import LexicalIndex, LowMemoryRetriever
 from . import grounding, providers, vectors
 from .local_rag import RagIndex
 from .auth import initialize_auth
@@ -42,7 +44,12 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
         account_engine.dispose()
         raise RuntimeError('Could not connect to the account database. Run python -m backend.manage check-user-db. See docs/SUPABASE.md.') from None
     engine=engine_for(database_url);initialize(engine,corpus_path)
-    store=Store(engine);retriever=Retriever(store);rag=RagIndex(store)
+    store=Store(engine)
+    low_memory=os.getenv('LOW_MEMORY_MODE','false').lower()=='true'
+    if low_memory:
+        rag=LexicalIndex(store);retriever=LowMemoryRetriever(store,rag)
+    else:
+        retriever=Retriever(store);rag=RagIndex(store)
     try:initialize_auth(app, account_engine, store)
     except SQLAlchemyError:
         account_engine.dispose()
@@ -55,7 +62,7 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
     book_map={b['id']:b for b in store.books}
     for b in store.books:
         file=directory/b['stored_filename']
-        if not file.is_file() or hashlib.sha256(file.read_bytes()).hexdigest()!=b['pdf_sha256']:
+        if not file.is_file() or digest(file)!=b['pdf_sha256']:
             raise ValueError('Original PDF missing or changed: '+b['filename'])
 
     def choose_book(bid):
@@ -74,7 +81,7 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
     def retrieve(query,books,limit=8):
         if books is None:books=infer_books(query,store.books)
         results,method=retriever.search(query,books,limit=24)
-        if method!='exact':
+        if method!='exact' and not low_memory:
             try:
                 if rag.ready:results,method=rag.search(query,books,limit)
                 else:method='lexical_fallback'
@@ -107,7 +114,7 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
     @app.get('/api/health')
     def health():
         with account_engine.connect() as connection:connection.execute(text('SELECT 1'))
-        return jsonify(status='ok',source_type='uploaded_pdf',books=len(store.books),pages=len(store.passages),account_database=account_engine.dialect.name,ai_enabled=providers.llm_ready(),ai_provider="gemini",ai_model=providers.model_name(),ai_endpoint=providers.api_mode(),app_version='3.5.0',ai_response_mode=providers.response_mode(),search='local_hybrid' if rag.ready else 'lexical',rag=rag.status(),corpus_fingerprint=store.fingerprint)
+        return jsonify(status='ok',source_type='uploaded_pdf',books=len(store.books),pages=len(store.passages),account_database=account_engine.dialect.name,ai_enabled=providers.llm_ready(),ai_provider="gemini",ai_model=providers.model_name(),ai_endpoint=providers.api_mode(),app_version='3.5.0',ai_response_mode=providers.response_mode(),search=('local_bm25' if low_memory else 'local_hybrid') if rag.ready else 'lexical',rag=rag.status(),corpus_fingerprint=store.fingerprint)
 
     @app.get('/api/books')
     def catalog():return jsonify(books=[{k:v for k,v in b.items() if k not in {'reference_spans','toc_override'}} for b in store.books])
@@ -120,14 +127,19 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
         b=choose_book(bid)
         return send_file(directory/b['stored_filename'],mimetype='application/pdf',conditional=True,etag=b['pdf_sha256'],download_name=b['filename'],as_attachment=request.args.get('download')=='1',max_age=3600)
 
-    @lru_cache(maxsize=12)
+    @lru_cache(maxsize=4)
     def image_bytes(bid,page,width):
         b=choose_book(bid)
         if not 1<=page<=b['page_count']:raise ValueError('PDF page is outside this book.')
         # MuPDF is protected from concurrent threads within a Gunicorn worker.
         with RENDER_LOCK, pymupdf.open(directory/b['stored_filename']) as doc:
             source=doc[page-1];scale=width/source.rect.width
-            return source.get_pixmap(matrix=pymupdf.Matrix(scale,scale),alpha=False).tobytes('png')
+            if low_memory:scale=min(scale,(4_000_000/max(1,source.rect.width*source.rect.height))**.5)
+            try:
+                pix=source.get_pixmap(matrix=pymupdf.Matrix(scale,scale),alpha=False)
+                data=pix.tobytes('png');del pix
+                return data
+            finally:pymupdf.TOOLS.store_shrink(100)
 
     def rendered_page(bid,page,width):
         data=image_bytes(bid,page,width);b=choose_book(bid)
@@ -146,7 +158,7 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
     def page_list():
         bid=request.args.get('book','gitascan');choose_book(bid)
         rows=store.by_book[bid];section=request.args.get('section')
-        if section:rows=[p for p in rows if p['section']==section]
+        if section:rows=PageSequence(store.engine,bid,section)
         offset=max(0,int(request.args.get('offset','0')));limit=min(100,max(1,int(request.args.get('limit','30'))))
         return jsonify(passages=rows[offset:offset+limit],total=len(rows),offset=offset)
 
@@ -276,9 +288,16 @@ def create_app(database_url=None, corpus_path=None, pdf_root=None, account_datab
     @app.get('/api/practice')
     def practice():
         bid=request.args.get('book','gitascan');choose_book(bid)
-        available=[p for p in store.by_book[bid] if len(p['text'])>250 and not p.get('unresolved_glyphs') and (p['extraction']!='ocr' or (p.get('ocr_confidence') or 0)>=55)]
-        if len(available)<4:return jsonify(status='unavailable',message='Not enough indexed pages for this exercise.')
-        rng=random.Random(request.args.get('seed') or os.urandom(8));choices=rng.sample(available,4);answer=rng.choice(choices)
+        rng=random.Random(request.args.get('seed') or os.urandom(8));choices=[];seen=0
+        for p in store.by_book[bid]:
+            if len(p['text'])<=250 or p.get('unresolved_glyphs') or (p['extraction']=='ocr' and (p.get('ocr_confidence') or 0)<55):continue
+            seen+=1
+            if len(choices)<4:choices.append(p)
+            else:
+                slot=rng.randrange(seen)
+                if slot<4:choices[slot]=p
+        if len(choices)<4:return jsonify(status='unavailable',message='Not enough indexed pages for this exercise.')
+        answer=rng.choice(choices)
         return jsonify(status='ready',kind='page_recognition',excerpt=answer['text'][:450],extraction=answer['extraction'],choices=[{'id':p['id'],'page':p['page'],'page_url':p['page_url']} for p in choices],answer_id=answer['id'])
 
     @app.get('/')

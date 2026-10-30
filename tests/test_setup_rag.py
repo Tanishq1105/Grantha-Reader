@@ -11,7 +11,8 @@ def bundle(tmp_path,monkeypatch):
     data=tmp_path/'data';prepared=data/'rag-prepared';model=data/'models/multilingual-e5-small'
     prepared.mkdir(parents=True);model.mkdir(parents=True)
     pages=[{'id':'test:1','book_id':'test','ordinal':1,'text':'Synthetic fixture: Arjuna performs duty without attachment to results.'}]
-    raw=json.dumps({'passages':pages}).encode();(data/'corpus.json').write_bytes(raw)
+    pages[0].update(source_id='fixture',page=1,section='one',refs=['1'],text_sha256=hashlib.sha256(pages[0]['text'].encode()).hexdigest())
+    raw=json.dumps({'schema_version':2,'source_type':'uploaded_pdf','books':[{'id':'test','pdf_sha256':'fixture','stored_filename':'test.pdf','page_count':1}],'sources':[{'id':'fixture'}],'passages':pages}).encode();(data/'corpus.json').write_bytes(raw)
     files={}
     for name in ['model.onnx','tokenizer.json']:
         payload=('synthetic '+name).encode();(model/name).write_bytes(payload)

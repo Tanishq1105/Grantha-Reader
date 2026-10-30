@@ -8,6 +8,8 @@ from tempfile import TemporaryDirectory
 from urllib.request import urlopen
 import hashlib
 import json
+import os
+from functools import lru_cache
 import lzma
 import sqlite3
 import numpy as np
@@ -65,7 +67,7 @@ def prepare(root=ROOT):
     model=json.loads((model_dir/'manifest.json').read_text())
     if any(signature[key]!=model['files'][name]['sha256'] for key,name in [('model_sha256','model.onnx'),('tokenizer_sha256','tokenizer.json')]):
         raise ValueError('The model manifest does not match the supplied vectors.')
-    download_model(model_dir)
+    if os.getenv('LOW_MEMORY_MODE','false').lower()!='true':download_model(model_dir)
     existing=directory/'manifest.json'
     if existing.is_file():
         try:
@@ -74,11 +76,17 @@ def prepare(root=ROOT):
                 print('Local search is already ready. No embeddings were recomputed.',flush=True);return
         except (OSError,ValueError,KeyError):pass
     print('Preparing the precomputed book vectors and local text search. No Gemini calls or embedding computation.',flush=True)
-    corpus=json.loads((data/'corpus.json').read_text(encoding='utf-8'))
-    pages=sorted(corpus['passages'],key=lambda p:(p['book_id'],p['ordinal']))
-    fingerprint=hashlib.sha256(json.dumps(pages,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
-    if fingerprint!=signature['corpus']:raise ValueError('Prepared vectors do not match the current passage ordering.')
-    by_id={p['id']:p for p in pages}
+    from .db import engine_for, initialize, Store
+    (root/'instance').mkdir(exist_ok=True)
+    engine=engine_for('sqlite:///'+str(root/'instance/grantha-books.db'))
+    initialize(engine,data/'corpus.json')
+    store=Store(engine)
+    if store.fingerprint!=signature['corpus']:raise ValueError('Prepared vectors do not match the current passage ordering.')
+    class CachedPages:
+        @lru_cache(maxsize=64)
+        def get(self,pid):return store.by_id.get(pid)
+        def __getitem__(self,pid):return self.get(pid)
+    by_id=CachedPages()
     with lzma.open(bundle/'rows.json.xz','rb') as f:raw=f.read(50_000_001)
     if len(raw)>50_000_000 or hashlib.sha256(raw).hexdigest()!=package['rows_sha256']:
         raise ValueError('Invalid prepared source offsets.')
